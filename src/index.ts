@@ -1,1 +1,1 @@
-export * from './clickup.service';
+export * from '@/services/clickup.service';
