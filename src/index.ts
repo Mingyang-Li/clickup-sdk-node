@@ -1,1 +1,1 @@
-export * from '@/services/clickup.service';
+export * from './services/authorization.service';
