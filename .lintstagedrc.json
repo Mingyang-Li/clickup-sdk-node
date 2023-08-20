@@ -4,8 +4,8 @@
     "eslint"
   ],
   "*.html": [
-    "eslint",
-    "prettier --write"
+    "lint",
+    "format --write"
   ],
   "*.scss": "prettier --write"
 }
