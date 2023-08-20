@@ -1,38 +1,31 @@
-import axios, { AxiosError, AxiosRequestConfig, AxiosResponse } from 'axios';
+import axios, { AxiosError, AxiosResponse } from 'axios';
 import { Routes } from '../constants/routes';
 import { ResultAsync, fromPromise } from 'neverthrow';
-
-type ClickUpConfig = {
-  apiKey: string;
-};
-
-export const buildClickUpConfigs = (apiKey: string): AxiosRequestConfig => ({
-  headers: {
-    Authorization: apiKey,
-  },
-});
+import * as ConfigService from './common/config.service';
 
 export type GetAuthorizedUserArgs = {
-  config: ClickUpConfig;
+  config: ConfigService.ClickUpConfig;
 };
 export type GetAuthorizedUserResBody = {
   user: {
-    id: number
-    username: string
-    email: string
-    color: string
-    profilePicture: string
-    initials: string
-    week_start_day: unknown
-    global_font_support: boolean
-    timezone: string
-  }
+    id: number;
+    username: string;
+    email: string;
+    color: string;
+    profilePicture: string;
+    initials: string;
+    week_start_day: unknown;
+    global_font_support: boolean;
+    timezone: string;
+  };
 };
-export const getAuthorizedUser = async (args: GetAuthorizedUserArgs): Promise<
+export const getAuthorizedUser = async (
+  args: GetAuthorizedUserArgs,
+): Promise<
   ResultAsync<AxiosResponse<GetAuthorizedUserResBody>, AxiosError>
 > => {
   const url = Routes.GET_AUTHORIZED_USER;
-  const config = buildClickUpConfigs(args.config.apiKey);
+  const config = ConfigService.buildClickUpConfigs(args.config.apiKey);
   return fromPromise(
     axios.get<GetAuthorizedUserResBody>(url, config).then(d => d),
     (error: AxiosError) => error,
@@ -40,7 +33,7 @@ export const getAuthorizedUser = async (args: GetAuthorizedUserArgs): Promise<
 };
 
 type GetAuthorizedTeamsArgs = {
-  config: ClickUpConfig;
+  config: ConfigService.ClickUpConfig;
 };
 export type GetAuthorizedTeamsResBody = { teams: Array<unknown> };
 export const getAuthorizedTeams = async (
@@ -49,7 +42,7 @@ export const getAuthorizedTeams = async (
   ResultAsync<AxiosResponse<GetAuthorizedTeamsResBody>, AxiosError>
 > => {
   const url = Routes.GET_AUTHORISED_TEAMS;
-  const config = buildClickUpConfigs(args.config.apiKey);
+  const config = ConfigService.buildClickUpConfigs(args.config.apiKey);
   return fromPromise(
     axios.get<GetAuthorizedTeamsResBody>(url, config).then(d => d),
     (error: AxiosError) => error,
