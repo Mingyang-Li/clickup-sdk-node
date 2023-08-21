@@ -8,6 +8,10 @@ export type CreateTaskAttachmentArgs = {
   query: {
     taskId: string;
   };
+  params?: {
+    custom_task_ids: 'true' | 'false';
+    team_id: string;
+  };
 };
 export type CreateTaskAttachmentResBody = {
   id: string;
@@ -18,7 +22,7 @@ export const createTaskAttachment = async (
 ): Promise<
   ResultAsync<AxiosResponse<CreateTaskAttachmentResBody>, AxiosError>
 > => {
-  const url = Routes.CREATE_TASK_ATTACHMENT(args.query.taskId);
+  const url = Routes.CREATE_TASK_ATTACHMENT(args);
   const config = ConfigService.buildClickUpConfigs(args.config.apiKey);
   return fromPromise(
     axios.post<CreateTaskAttachmentResBody>(url, config).then(d => d),
