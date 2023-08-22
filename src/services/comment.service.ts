@@ -62,3 +62,27 @@ export const createTaskComment = async (
     (error: AxiosError) => error,
   );
 };
+
+export type GetChatViewCommentsArgs = {
+  config: ConfigService.ClickUpConfig;
+  query: { viewId: string };
+  params?: {
+    start?: string;
+    start_id?: string;
+  };
+};
+export type GetChatViewCommentsResBody = {
+  comments: Array<Comment>;
+};
+export const getChatViewComments = async (
+  args: GetChatViewCommentsArgs,
+): Promise<
+  ResultAsync<AxiosResponse<GetChatViewCommentsResBody>, AxiosError>
+> => {
+  const url = Routes.GET_CHAT_VIEW_COMMENTS(args);
+  const config = ConfigService.buildClickUpConfigs(args.config.apiKey);
+  return fromPromise(
+    axios.get<GetChatViewCommentsResBody>(url, config).then(d => d),
+    (error: AxiosError) => error,
+  );
+};
