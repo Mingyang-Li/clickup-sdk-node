@@ -26,7 +26,7 @@ export const getTaskComments = async (
   const url = Routes.GET_TASK_COMMENTS(args);
   const config = ConfigService.buildClickUpConfigs(args.config.apiKey);
   return fromPromise(
-    axios.post<GetTaskCommentsResBody>(url, config).then(d => d),
+    axios.get<GetTaskCommentsResBody>(url, config).then(d => d),
     (error: AxiosError) => error,
   );
 };
