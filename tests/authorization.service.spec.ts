@@ -5,7 +5,7 @@ describe('AuthorizationService', () => {
   describe('AuthorizationService.getAuthorizedUser', () => {
     const args: AuthorizationService.GetAuthorizedUserArgs = {
       config: {
-        apiKey: env.CLICKUP_API_KEY || '',
+        apiKey: env.CLICKUP_API_KEY,
       },
     };
     it(`Should return ok`, async () => {
@@ -27,7 +27,7 @@ describe('AuthorizationService', () => {
   describe('AuthorizationService.getAuthorizedTeams', () => {
     const args: AuthorizationService.GetAuthorizedTeamsArgs = {
       config: {
-        apiKey: env.CLICKUP_API_KEY || '',
+        apiKey: env.CLICKUP_API_KEY,
       },
     };
     it(`Should return ok`, async () => {
