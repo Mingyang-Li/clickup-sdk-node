@@ -1,5 +1,6 @@
+import { Config } from '../src/constants/config';
+import * as AuthorizationService from '../src/services/authorization.service';
 import { validateApiKey } from './common/config';
-import { StatusCodes } from 'http-status-codes';
 
 describe('AuthorizationService', () => {
   beforeAll(() => {
@@ -7,8 +8,14 @@ describe('AuthorizationService', () => {
   });
 
   describe('AuthorizationService.getAuthorizedUser', () => {
-    it(`Should return ${StatusCodes.OK}`, () => {
-      expect(0).toEqual(0);
+    const args: AuthorizationService.GetAuthorizedUserArgs = {
+      config: {
+        apiKey: Config.CLICKUP_API_KEY || '',
+      },
+    };
+    it(`Should return ok`, async () => {
+      const res = await AuthorizationService.getAuthorizedUser(args);
+      expect(res.isOk()).toBeTruthy();
     });
   });
 });
