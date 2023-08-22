@@ -1,16 +1,11 @@
-import { Config } from '../src/constants/config';
 import * as AuthorizationService from '../src/services/authorization.service';
-import { validateApiKey } from './common/config';
+import { env } from './common/env';
 
 describe('AuthorizationService', () => {
-  beforeAll(() => {
-    validateApiKey();
-  });
-
   describe('AuthorizationService.getAuthorizedUser', () => {
     const args: AuthorizationService.GetAuthorizedUserArgs = {
       config: {
-        apiKey: Config.CLICKUP_API_KEY || '',
+        apiKey: env.CLICKUP_API_KEY || '',
       },
     };
     it(`Should return ok`, async () => {
@@ -32,7 +27,7 @@ describe('AuthorizationService', () => {
   describe('AuthorizationService.getAuthorizedTeams', () => {
     const args: AuthorizationService.GetAuthorizedTeamsArgs = {
       config: {
-        apiKey: Config.CLICKUP_API_KEY || '',
+        apiKey: env.CLICKUP_API_KEY || '',
       },
     };
     it(`Should return ok`, async () => {
