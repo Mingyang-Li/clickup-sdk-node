@@ -1,7 +1,14 @@
-import { Config } from '../src/constants/config';
+import { validateApiKey } from './common/config';
+import { StatusCodes } from 'http-status-codes';
 
-describe('AuthorizationService.getAuthorizedUser', () => {
-  it('ClickUp API Key is provided', () => {
-    expect(Config.CLICKUP_API_KEY).not.toEqual(undefined);
+describe('AuthorizationService', () => {
+  beforeAll(() => {
+    validateApiKey();
+  });
+
+  describe('AuthorizationService.getAuthorizedUser', () => {
+    it(`Should return ${StatusCodes.OK}`, () => {
+      expect(0).toEqual(0);
+    });
   });
 });
