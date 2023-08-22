@@ -1,4 +1,3 @@
-// import { Config } from '../src/constants/config';
 import * as AttachmentService from '../src/services/attachment.service';
 import { env } from './common/env';
 
