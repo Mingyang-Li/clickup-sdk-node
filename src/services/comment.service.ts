@@ -30,3 +30,35 @@ export const getTaskComments = async (
     (error: AxiosError) => error,
   );
 };
+
+export type CreateTaskCommentArgs = {
+  config: ConfigService.ClickUpConfig;
+  query: { taskId: string };
+  body: {
+    comment_text: string;
+    assignee: number;
+    notify_all: boolean;
+  };
+  params?: {
+    custom_task_ids?: 'true' | 'false';
+    team_id?: string;
+  };
+};
+export type CreateTaskCommentResBody = {
+  id: number;
+  hist_id: string;
+  date: number;
+};
+export const createTaskComment = async (
+  args: CreateTaskCommentArgs,
+): Promise<
+  ResultAsync<AxiosResponse<CreateTaskCommentResBody>, AxiosError>
+> => {
+  const url = Routes.CREATE_TASK_COMMENT(args);
+  const { body } = args;
+  const config = ConfigService.buildClickUpConfigs(args.config.apiKey);
+  return fromPromise(
+    axios.post<CreateTaskCommentResBody>(url, body, config).then(d => d),
+    (error: AxiosError) => error,
+  );
+};
