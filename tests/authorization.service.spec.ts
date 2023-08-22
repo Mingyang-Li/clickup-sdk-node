@@ -18,4 +18,16 @@ describe('AuthorizationService', () => {
       expect(res.isOk()).toBeTruthy();
     });
   });
+
+  describe('AuthorizationService.getAuthorizedTeams', () => {
+    const args: AuthorizationService.GetAuthorizedTeamsArgs = {
+      config: {
+        apiKey: Config.CLICKUP_API_KEY || '',
+      },
+    };
+    it(`Should return ok`, async () => {
+      const res = await AuthorizationService.getAuthorizedTeams(args);
+      expect(res.isOk()).toBeTruthy();
+    });
+  });
 });

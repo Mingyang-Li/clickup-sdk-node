@@ -32,7 +32,7 @@ export const getAuthorizedUser = async (
   );
 };
 
-type GetAuthorizedTeamsArgs = {
+export type GetAuthorizedTeamsArgs = {
   config: ConfigService.ClickUpConfig;
 };
 export type GetAuthorizedTeamsResBody = { teams: Array<unknown> };
