@@ -20,7 +20,7 @@ describe('AuthorizationService', () => {
         },
       };
       const res = await AuthorizationService.getAuthorizedUser(args);
-      expect(res.isOk()).toBeFalsy();
+      expect(res.isErr()).toBeTruthy();
     });
   });
 
@@ -42,7 +42,7 @@ describe('AuthorizationService', () => {
         },
       };
       const res = await AuthorizationService.getAuthorizedTeams(args);
-      expect(res.isOk()).toBeFalsy();
+      expect(res.isErr()).toBeTruthy();
     });
   });
 });
