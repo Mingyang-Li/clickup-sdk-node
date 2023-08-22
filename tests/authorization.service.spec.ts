@@ -1,5 +1,7 @@
-describe('testing', () => {
-  test('should equal in zero', () => {
-    expect(0).toBe(0);
+import { Config } from '../src/constants/config';
+
+describe('AuthorizationService.getAuthorizedUser', () => {
+  it('ClickUp API Key is provided', () => {
+    expect(Config.CLICKUP_API_KEY).not.toEqual(undefined);
   });
 });
