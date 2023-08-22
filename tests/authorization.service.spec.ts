@@ -39,5 +39,15 @@ describe('AuthorizationService', () => {
       const res = await AuthorizationService.getAuthorizedTeams(args);
       expect(res.isOk()).toBeTruthy();
     });
+
+    it(`Should return error`, async () => {
+      const args: AuthorizationService.GetAuthorizedUserArgs = {
+        config: {
+          apiKey: '',
+        },
+      };
+      const res = await AuthorizationService.getAuthorizedTeams(args);
+      expect(res.isOk()).toBeFalsy();
+    });
   });
 });
