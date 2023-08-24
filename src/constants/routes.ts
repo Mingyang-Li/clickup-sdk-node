@@ -2,6 +2,7 @@ import {
   GetTaskCommentsArgs,
   CreateTaskCommentArgs,
   GetChatViewCommentsArgs,
+  CreateChatViewCommentArgs,
 } from '../services/comment.service';
 import { CreateTaskAttachmentArgs } from '../services/attachment.service';
 
@@ -46,5 +47,9 @@ export const Routes = {
       const query = new URLSearchParams(args.params).toString();
       return `${baseUrl}/task/${args.query.viewId}/comment?${query}`;
     }
+  },
+
+  CREATE_CHAT_VIEW_COMMENT: (args: CreateChatViewCommentArgs) => {
+    return `${baseUrl}/view/${args.query.viewId}/comment`;
   },
 };
