@@ -48,7 +48,6 @@ export const Routes = {
       return `${baseUrl}/task/${args.query.viewId}/comment?${query}`;
     }
   },
-
   CREATE_CHAT_VIEW_COMMENT: (args: CreateChatViewCommentArgs) => {
     return `${baseUrl}/view/${args.query.viewId}/comment`;
   },
