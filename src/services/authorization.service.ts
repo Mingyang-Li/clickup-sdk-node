@@ -27,7 +27,7 @@ export const getAuthorizedUser = async (
   const url = Routes.GET_AUTHORIZED_USER;
   const config = ConfigService.buildClickUpConfigs(args.config.apiKey);
   return fromPromise(
-    axios.get<GetAuthorizedUserResBody>(url, config).then(d => d),
+    axios.get<GetAuthorizedUserResBody>(url, config).then(res => res),
     (error: AxiosError) => error,
   );
 };
@@ -44,7 +44,7 @@ export const getAuthorizedTeams = async (
   const url = Routes.GET_AUTHORISED_TEAMS;
   const config = ConfigService.buildClickUpConfigs(args.config.apiKey);
   return fromPromise(
-    axios.get<GetAuthorizedTeamsResBody>(url, config).then(d => d),
+    axios.get<GetAuthorizedTeamsResBody>(url, config).then(res => res),
     (error: AxiosError) => error,
   );
 };

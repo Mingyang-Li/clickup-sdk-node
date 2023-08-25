@@ -25,7 +25,7 @@ export const createTaskAttachment = async (
   const url = Routes.CREATE_TASK_ATTACHMENT(args);
   const config = ConfigService.buildClickUpConfigs(args.config.apiKey);
   return fromPromise(
-    axios.post<CreateTaskAttachmentResBody>(url, config).then(d => d),
+    axios.post<CreateTaskAttachmentResBody>(url, config).then(res => res),
     (error: AxiosError) => error,
   );
 };

@@ -26,7 +26,7 @@ export const getTaskComments = async (
   const url = Routes.GET_TASK_COMMENTS(args);
   const config = ConfigService.buildClickUpConfigs(args.config.apiKey);
   return fromPromise(
-    axios.get<GetTaskCommentsResBody>(url, config).then(d => d),
+    axios.get<GetTaskCommentsResBody>(url, config).then(res => res),
     (error: AxiosError) => error,
   );
 };
@@ -58,7 +58,7 @@ export const createTaskComment = async (
   const { body } = args;
   const config = ConfigService.buildClickUpConfigs(args.config.apiKey);
   return fromPromise(
-    axios.post<CreateTaskCommentResBody>(url, body, config).then(d => d),
+    axios.post<CreateTaskCommentResBody>(url, body, config).then(res => res),
     (error: AxiosError) => error,
   );
 };
@@ -82,7 +82,7 @@ export const getChatViewComments = async (
   const url = Routes.GET_CHAT_VIEW_COMMENTS(args);
   const config = ConfigService.buildClickUpConfigs(args.config.apiKey);
   return fromPromise(
-    axios.get<GetChatViewCommentsResBody>(url, config).then(d => d),
+    axios.get<GetChatViewCommentsResBody>(url, config).then(res => res),
     (error: AxiosError) => error,
   );
 };
@@ -109,7 +109,9 @@ export const createChatViewComment = async (
   const { body } = args;
   const config = ConfigService.buildClickUpConfigs(args.config.apiKey);
   return fromPromise(
-    axios.post<CreateChatViewCommentResBody>(url, body, config).then(d => d),
+    axios
+      .post<CreateChatViewCommentResBody>(url, body, config)
+      .then(res => res),
     (error: AxiosError) => error,
   );
 };
@@ -134,7 +136,7 @@ export const getListComments = async (
   const url = Routes.GET_LIST_COMMENTS(args);
   const config = ConfigService.buildClickUpConfigs(args.config.apiKey);
   return fromPromise(
-    axios.get<GetListCommentsResBody>(url, config).then(d => d),
+    axios.get<GetListCommentsResBody>(url, config).then(res => res),
     (error: AxiosError) => error,
   );
 };
@@ -164,9 +166,7 @@ export const createListComment = async (
   const { body } = args;
   const config = ConfigService.buildClickUpConfigs(args.config.apiKey);
   return fromPromise(
-    axios
-      .post<CreateListCommentResBody>(url, body, config)
-      .then(response => response),
+    axios.post<CreateListCommentResBody>(url, body, config).then(res => res),
     (error: AxiosError) => error,
   );
 };
