@@ -3,6 +3,7 @@ import {
   CreateTaskCommentArgs,
   GetChatViewCommentsArgs,
   CreateChatViewCommentArgs,
+  GetListCommentsArgs,
 } from '../services/comment.service';
 import { CreateTaskAttachmentArgs } from '../services/attachment.service';
 
@@ -50,5 +51,13 @@ export const Routes = {
   },
   CREATE_CHAT_VIEW_COMMENT: (args: CreateChatViewCommentArgs) => {
     return `${baseUrl}/view/${args.query.viewId}/comment`;
+  },
+  GET_LIST_COMMENTS: (args: GetListCommentsArgs) => {
+    if (args.params === undefined) {
+      return `${baseUrl}/list/${args.query.listId}/comment`;
+    } else {
+      const query = new URLSearchParams(args.params).toString();
+      return `${baseUrl}/list/${args.query.listId}/comment?${query}`;
+    }
   },
 };
