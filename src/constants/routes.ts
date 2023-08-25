@@ -4,6 +4,7 @@ import {
   GetChatViewCommentsArgs,
   CreateChatViewCommentArgs,
   GetListCommentsArgs,
+  CreateListCommentArgs,
 } from '../services/comment.service';
 import { CreateTaskAttachmentArgs } from '../services/attachment.service';
 
@@ -59,5 +60,9 @@ export const Routes = {
       const query = new URLSearchParams(args.params).toString();
       return `${baseUrl}/list/${args.query.listId}/comment?${query}`;
     }
+  },
+
+  CREATE_LIST_COMMENT: (args: CreateListCommentArgs) => {
+    return `${baseUrl}/list/${args.query.listId}/comment`;
   },
 };

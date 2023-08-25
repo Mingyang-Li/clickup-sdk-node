@@ -138,3 +138,35 @@ export const getListComments = async (
     (error: AxiosError) => error,
   );
 };
+
+export type CreateListCommentArgs = {
+  config: ConfigService.ClickUpConfig;
+  query: {
+    listId: string;
+  };
+  body: {
+    comment_text: string;
+    assignee: number;
+    notify_all: boolean;
+  };
+};
+export type CreateListCommentResBody = {
+  id: string;
+  hist_id: string;
+  date: number;
+};
+export const createListComment = async (
+  args: CreateListCommentArgs,
+): Promise<
+  ResultAsync<AxiosResponse<CreateListCommentResBody>, AxiosError>
+> => {
+  const url = Routes.CREATE_LIST_COMMENT(args);
+  const { body } = args;
+  const config = ConfigService.buildClickUpConfigs(args.config.apiKey);
+  return fromPromise(
+    axios
+      .post<CreateListCommentResBody>(url, body, config)
+      .then(response => response),
+    (error: AxiosError) => error,
+  );
+};
