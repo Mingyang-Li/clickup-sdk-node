@@ -72,4 +72,9 @@ export const Routes = {
   DELETE_COMMENT: (args: DeleteCommentArgs) => {
     return `${baseUrl}/comment/${args.query.commentId}`;
   },
+
+  // Custom Fields
+  GET_ACCESSIBLE_CUSTOMH_FIELDS: () => {
+    return '';
+  },
 };
