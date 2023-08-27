@@ -185,12 +185,34 @@ export type UpdateCommentArgs = {
 export type UpdateCommentResBody = {
   [key: string]: unknown;
 };
-export const updateComment = (args: UpdateCommentArgs) => {
+export const updateComment = async (
+  args: UpdateCommentArgs,
+): Promise<ResultAsync<AxiosResponse<UpdateCommentResBody>, AxiosError>> => {
   const url = Routes.UPDATE_COMMENT(args);
   const { body } = args;
   const config = ConfigService.buildClickUpConfigs(args.config.apiKey);
   return fromPromise(
     axios.post<UpdateCommentResBody>(url, body, config).then(res => res),
+    (error: AxiosError) => error,
+  );
+};
+
+export type DeleteCommentArgs = {
+  config: ConfigService.ClickUpConfig;
+  query: {
+    commentId: string;
+  };
+};
+export type DeleteCommentResBody = {
+  [key: string]: unknown;
+};
+export const deleteComment = async (
+  args: DeleteCommentArgs,
+): Promise<ResultAsync<AxiosResponse<DeleteCommentResBody>, AxiosError>> => {
+  const url = Routes.DELETE_COMMENT(args);
+  const config = ConfigService.buildClickUpConfigs(args.config.apiKey);
+  return fromPromise(
+    axios.delete<DeleteCommentResBody>(url, config).then(res => res),
     (error: AxiosError) => error,
   );
 };

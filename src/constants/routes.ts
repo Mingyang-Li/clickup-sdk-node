@@ -6,6 +6,7 @@ import {
   GetListCommentsArgs,
   CreateListCommentArgs,
   UpdateCommentArgs,
+  DeleteCommentArgs,
 } from '../services/comment.service';
 import { CreateTaskAttachmentArgs } from '../services/attachment.service';
 
@@ -66,6 +67,9 @@ export const Routes = {
     return `${baseUrl}/list/${args.query.listId}/comment`;
   },
   UPDATE_COMMENT: (args: UpdateCommentArgs) => {
+    return `${baseUrl}/comment/${args.query.commentId}`;
+  },
+  DELETE_COMMENT: (args: DeleteCommentArgs) => {
     return `${baseUrl}/comment/${args.query.commentId}`;
   },
 };
