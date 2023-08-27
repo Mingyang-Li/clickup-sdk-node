@@ -170,3 +170,27 @@ export const createListComment = async (
     (error: AxiosError) => error,
   );
 };
+
+export type UpdateCommentArgs = {
+  config: ConfigService.ClickUpConfig;
+  query: {
+    commentId: string;
+  };
+  body: {
+    comment_text: string;
+    assignee: number;
+    resolved: boolean;
+  };
+};
+export type UpdateCommentResBody = {
+  [key: string]: unknown;
+};
+export const updateComment = (args: UpdateCommentArgs) => {
+  const url = Routes.UPDATE_COMMENT(args);
+  const { body } = args;
+  const config = ConfigService.buildClickUpConfigs(args.config.apiKey);
+  return fromPromise(
+    axios.post<UpdateCommentResBody>(url, body, config).then(res => res),
+    (error: AxiosError) => error,
+  );
+};

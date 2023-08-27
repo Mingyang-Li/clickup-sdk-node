@@ -5,13 +5,14 @@ import {
   CreateChatViewCommentArgs,
   GetListCommentsArgs,
   CreateListCommentArgs,
+  UpdateCommentArgs,
 } from '../services/comment.service';
 import { CreateTaskAttachmentArgs } from '../services/attachment.service';
 
 const baseUrl = `https://api.clickup.com/api/v2`;
 
 export const Routes = {
-  // Authorizarion
+  // Authorization
   GET_AUTHORIZED_USER: `${baseUrl}/user`,
   GET_AUTHORISED_TEAMS: `${baseUrl}/team`,
 
@@ -61,8 +62,10 @@ export const Routes = {
       return `${baseUrl}/list/${args.query.listId}/comment?${query}`;
     }
   },
-
   CREATE_LIST_COMMENT: (args: CreateListCommentArgs) => {
     return `${baseUrl}/list/${args.query.listId}/comment`;
+  },
+  UPDATE_COMMENT: (args: UpdateCommentArgs) => {
+    return `${baseUrl}/comment/${args.query.commentId}`;
   },
 };
