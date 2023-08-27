@@ -30,7 +30,6 @@ describe('Testing URL path mappers', () => {
         },
       };
       const url = Routes.CREATE_TASK_ATTACHMENT(args);
-      console.log({ url });
       expect(url).toContain(`?`);
     });
   });
@@ -51,7 +50,6 @@ describe('Testing URL path mappers', () => {
         params: { custom_task_ids: 'false' },
       };
       const url = Routes.GET_TASK_COMMENTS(args);
-      console.log({ url });
       expect(url).toContain(`?`);
     });
   });
