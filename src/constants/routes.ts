@@ -7,7 +7,7 @@ import {
   CreateListCommentArgs,
   UpdateCommentArgs,
   DeleteCommentArgs,
-} from '../services/comment.service';
+} from '@/services/comment.service';
 import { CreateTaskAttachmentArgs } from '../services/attachment.service';
 
 const baseUrl = `https://api.clickup.com/api/v2`;
